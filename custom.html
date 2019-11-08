@@ -1,0 +1,451 @@
+<!DOCtype html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <link href="https://fonts.googleapis.com/css?family=Rubik:400,400i,700" rel="stylesheet"/>
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+        <style>
+            body{
+                margin: 0;
+                padding: 0;
+            }
+
+            /* FONT  */
+            *{
+                 font-family: 'Rubik', sans-serif;
+            }
+
+  /* DASHBOARD  */
+  .dashboard-layout{
+      display: flex;
+      width: 100%;
+      height: 100vh;
+    }
+            .dashboard-layout #checkbox-main-nav-toggler,
+            .dashboard-layout #checkbox-mobile-main-nav-toggler,
+            .dashboard-layout .mobile-nav-header{
+                display: none;
+            }
+
+            /* MAIN NAV */
+            .dashboard-layout .main-nav{
+                width: 300px;
+                background: linear-gradient(45deg, rgba(36,64,164,1) 0%,rgba(41,154,215,1) 51%);
+                color: #ffffff;
+                transition: all .2s ease-in-out;
+                z-index: 3;
+            }
+            .dashboard-layout .main-nav .main-nav-header{
+                cursor: pointer;
+                height: 70px;
+                padding: 5px;
+                border-bottom: 2px solid rgba(0,0,0,0.2);
+                display: flex;
+                flex-wrap: wrap;
+                align-items: center;
+                overflow: hidden;
+                text-decoration: none !important;
+            }
+            .dashboard-layout .dashboard-icon{
+                width: 100%;
+                flex: 0 0 33.333333%;
+                max-width: 33.333333%;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+            .dashboard-layout .dashboard-icon img{
+                width: 45px;
+                height: 45px;
+            }
+            .dashboard-layout .dashboard-name{
+                font-size: .9rem;
+                transition: none;
+                color: #ffffff;
+                display: inline-block;
+
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+
+                padding-left: 10px; 
+                width: 100%;
+                flex: 0 0 66.666667%;
+                max-width: 66.666667%;
+            }
+
+            /* MAIN MENU */
+            .dashboard-layout .main-nav .main-nav-menu{
+                height: calc(100vh - 120px);
+                overflow-x: hidden;
+                overflow-y: auto;
+                list-style: none;
+                margin: 0;
+                padding: 0;
+            }
+            /* default menu option style */
+            .dashboard-layout .main-nav .main-nav-menu .nav-link-item a,
+            .dashboard-layout .main-nav .main-nav-menu .nav-dropdown-item label,
+            .dashboard-layout .main-nav .main-nav-menu .nav-dropdown-item ul li a{
+                display: block;
+                color: #ffffff;
+                transition: all .5s ease-in-out;
+                text-decoration: none;
+                padding: 10px;
+                transition: none;
+                cursor: pointer;
+                margin: 0;
+            }
+            .dashboard-layout .main-nav .main-nav-menu .nav-link-item a span:nth-child(2),
+            .dashboard-layout .main-nav .main-nav-menu .nav-dropdown-item label span:nth-child(2){
+                padding-left: 5px; 
+            }
+            /*hover style*/
+            .dashboard-layout .main-nav .main-nav-menu .nav-link-item a:hover,
+            .dashboard-layout .main-nav .main-nav-menu .nav-dropdown-item label:hover{
+                background-color: rgba(255,255,255,0.2);
+            }
+            /*active style*/
+            .dashboard-layout .main-nav .main-nav-menu .nav-link-item a.active,
+            .dashboard-layout .main-nav .main-nav-menu .nav-link-item a.router-link-active,
+            .dashboard-layout .main-nav .main-nav-menu .nav-dropdown-item label.active,
+            .dashboard-layout .main-nav .main-nav-menu .nav-dropdown-item label.router-link-active,
+            .dashboard-layout .main-nav .main-nav-menu .nav-dropdown-item ul li a.active,
+            .dashboard-layout .main-nav .main-nav-menu .nav-dropdown-item ul li a.router-link-active{
+                background-color: rgba(255,255,255,0.3);
+            }
+            /* dropdown menu option style */
+            .dashboard-layout .main-nav .main-nav-menu .nav-dropdown-item input[type=checkbox]{
+                display: none;
+            }
+            .dashboard-layout .main-nav .main-nav-menu .nav-dropdown-item label::before{
+                content: " ";
+                display: block;
+                width: 10px;
+                height: 10px;
+                border-top: 2px solid #ffffff;
+                border-right: 2px solid #ffffff;
+                border-top-right-radius: 3px;
+                float: right;
+                margin-top: 5px;
+                transform: rotate(135deg);
+                transition: all .2s ease-in-out;
+            }
+            .dashboard-layout .main-nav .main-nav-menu .nav-dropdown-item ul{
+                background: rgba(0,0,0,0.2);
+                transition: all .2s ease-in-out;
+                overflow: hidden;
+                max-height: 0;
+                list-style: none;
+                margin: 0;
+                padding: 0;
+            }
+            .dashboard-layout .main-nav .main-nav-menu .nav-dropdown-item ul li{
+                padding-left: 1rem;
+            }
+            .dashboard-layout .main-nav .main-nav-menu .nav-dropdown-item ul li a{
+                font-size: 0.9rem;
+            }
+            /* dropdown open */
+            .dashboard-layout .main-nav .main-nav-menu .nav-dropdown-item input[type=checkbox]:checked ~ label{
+                background-color: rgba(255,255,255,0.3);
+            }
+            .dashboard-layout .main-nav .main-nav-menu .nav-dropdown-item input[type=checkbox]:checked ~ label::before{
+                transform: rotate(-45deg);
+            }
+            .dashboard-layout .main-nav .main-nav-menu .nav-dropdown-item input[type=checkbox]:checked ~ ul{
+                max-height: 100vh;
+            }
+
+            /* MAIN FOOTER */
+            .dashboard-layout .main-nav .main-nav-footer{
+                height: 50px;
+                border-top: 2px solid rgba(0,0,0,0.2);
+            }
+            .dashboard-layout .main-nav .main-nav-footer .btn-toggle-main-nav{
+                cursor: pointer;
+                margin: 0;
+                height: 48px;
+                width: 50px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                float: right;
+            }
+            .dashboard-layout .main-nav .main-nav-footer .btn-toggle-main-nav::before{
+                content: " ";
+                display: block;
+                border-top-right-radius: 0.25rem;
+                border-top: 2px solid #ffffff;
+                border-right: 2px solid #ffffff;
+                width: 12px;
+                height: 12px;
+                transform: rotate(-135deg);
+                transition: all .2s ease-in-out;
+            }
+
+            /* PAGE CONTENT */
+            .dashboard-layout .page-content{
+                width: 100%;
+                display: flex;
+                flex-direction: column;
+            }
+            .dashboard-layout .page-content .mobile-nav-overlay{
+                display: none;
+            }
+            .dashboard-layout .page-content .page-content-scroll{
+                overflow-x: hidden;
+                overflow-y: auto;
+                padding: 10px;
+                height: 100vh;
+            }
+
+
+            /* MAIN NAV TOGGLE */
+            .dashboard-layout #checkbox-main-nav-toggler:checked ~ .main-nav{
+                width: 70px;
+                position: relative;
+            }
+            .dashboard-layout #checkbox-main-nav-toggler:checked ~ .main-nav .main-nav-header{
+              justify-content: center;
+            }
+            .dashboard-layout #checkbox-main-nav-toggler:checked ~ .main-nav .main-nav-header .dashboard-name{
+                display: none;
+            }
+            .dashboard-layout #checkbox-main-nav-toggler:checked ~ .main-nav .main-nav-menu .nav-link-item a,
+            .dashboard-layout #checkbox-main-nav-toggler:checked ~ .main-nav .main-nav-menu .nav-dropdown-item label {
+                text-align: center;
+                font-size: 1.5rem;
+            }
+            .dashboard-layout #checkbox-main-nav-toggler:checked ~ .main-nav .main-nav-menu .nav-link-item a span:nth-child(2),
+            .dashboard-layout #checkbox-main-nav-toggler:checked ~ .main-nav .main-nav-menu .nav-dropdown-item label span:nth-child(2){
+                display: none;
+            }
+            /* dropdown */
+            .dashboard-layout #checkbox-main-nav-toggler:checked ~ .main-nav .main-nav-menu .nav-dropdown-item label::before{
+                margin-top: 15px;
+                transform: rotate(135deg);
+            }
+            .dashboard-layout #checkbox-main-nav-toggler:checked ~ .main-nav .main-nav-menu .nav-dropdown-item ul{
+                margin-left: 5px;
+                width: 200px;
+                position: absolute;
+                background: #ffffff;
+                border-radius: 3px;
+            }
+            .dashboard-layout #checkbox-main-nav-toggler:checked ~ .main-nav .main-nav-menu .nav-dropdown-item input[type=checkbox]:checked ~ ul{
+                -webkit-box-shadow: 0 4px 4px 0 rgba(60,64,67,.30), 0 8px 12px 6px rgba(60,64,67,.15);
+                box-shadow: 0 4px 4px 0 rgba(60,64,67,.30), 0 8px 12px 6px rgba(60,64,67,.15);
+            }
+            .dashboard-layout #checkbox-main-nav-toggler:checked ~ .main-nav .main-nav-menu .nav-dropdown-item ul li a{
+                color: #161616;
+            }
+            .dashboard-layout #checkbox-main-nav-toggler:checked ~ .main-nav .main-nav-footer .btn-toggle-main-nav{
+                float: unset;
+                width: 100%;
+            }
+            .dashboard-layout #checkbox-main-nav-toggler:checked ~ .main-nav .main-nav-footer .btn-toggle-main-nav::before{
+                transform: rotate(45deg);
+            }
+
+            /* MOBILE VIEW  */
+            @media only screen and (max-width: 767px){
+                /* MAIN NAV */
+                .dashboard-layout .main-nav{
+                    transform: translateX(-100%);
+                    -webkit-box-shadow: 0 4px 4px 0 rgba(60,64,67,.30), 0 8px 12px 6px rgba(60,64,67,.15);
+                    box-shadow: 0 4px 4px 0 rgba(60,64,67,.30), 0 8px 12px 6px rgba(60,64,67,.15);
+                    position: absolute;
+                    transition: all .5s ease-in-out;
+                }
+                .dashboard-layout .main-nav .main-nav-footer .btn-toggle-main-nav{
+                    display: none;
+                }
+                /* MOBILE NAV */
+                .dashboard-layout .mobile-nav-header{
+                    display: flex;
+                    flex-wrap: wrap;
+                    width: 100%;
+                    height: 50px;
+                    background:rgba(41,154,215,1);
+                }
+                /*cursor*/
+                .dashboard-layout .mobile-nav-header .mobile-nav-buttons-left > *,
+                .dashboard-layout .mobile-nav-header .mobile-nav-title a,
+                .dashboard-layout .mobile-nav-header .mobile-nav-buttons-right > *{
+                    cursor: pointer;
+                }
+                /*mobile nav columns width size and displays*/ 
+                .dashboard-layout .mobile-nav-header .mobile-nav-buttons-left,
+                .dashboard-layout .mobile-nav-header .mobile-nav-title,
+                .dashboard-layout .mobile-nav-header .mobile-nav-buttons-right{
+                    flex: 0 0 33.333333%;
+                    max-width: 33.333333%;
+                    display: flex;
+                }
+                /*mobile nav buttons left*/
+                .dashboard-layout .mobile-nav-header .mobile-nav-buttons-left{
+                    justify-content: flex-start;
+                    align-items: center;
+                }
+                /*mobile nav */
+                .dashboard-layout .mobile-nav-header .mobile-nav-title{
+                    justify-content: center;
+                    align-items: center;
+                }
+                .dashboard-layout .mobile-nav-header .mobile-nav-title a{
+                    height: 40px;
+                    width: 40px;
+                    display: block;
+                    text-decoration: none !important;
+                }
+                .dashboard-layout .mobile-nav-header .mobile-nav-title a img{ 
+                    width: 100%;
+                    height: auto;
+                }
+                .dashboard-layout .mobile-nav-header .mobile-nav-buttons-right{
+                    justify-content: flex-end;
+                    align-items: center;
+                }
+                /* PAGE CONTENT */
+                .dashboard-layout .page-content{
+                    position: relative;
+                }
+                .dashboard-layout .page-content .mobile-nav-overlay{
+                    display: block;
+                    margin: 0;
+                    background: rgba(0,0,0,0.5);
+                    position: absolute;
+                    width: 100%;
+                    height: 100%;
+                    top: 0;
+                    right: 0;
+                    bottom: 0;
+                    left: 0;
+                    z-index: 2;
+                    visibility: hidden;
+                    opacity: 0;
+                    transition: all .5s ease-in-out;
+                    cursor: pointer;
+                }
+                .dashboard-layout .page-content .page-content-scroll{
+                    height: calc(100vh - 50px);
+                }
+                /* MOBILE NAV TOGGLED*/
+                .dashboard-layout #checkbox-mobile-main-nav-toggler:checked ~ .main-nav{
+                    transform: translateX(0%);
+                }
+                .dashboard-layout #checkbox-mobile-main-nav-toggler:checked ~ .page-content .mobile-nav-overlay{
+                    visibility: visible;
+                    opacity: 1;
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <div class="dashboard-layout">
+            <input type="checkbox" id="checkbox-main-nav-toggler"/>
+            <input type="checkbox" id="checkbox-mobile-main-nav-toggler"/>
+            <div class="main-nav">
+                <a href="#" class="main-nav-header">
+                    <div class="dashboard-icon">
+                        <img src="..." alt="logo"/>
+                    </div>
+                    <span class="dashboard-name">
+                        Lorem ipsum dolor sit amet.
+                    </span>
+                </a>
+                <ul class="main-nav-menu">
+                        <li class="nav-link-item">
+                            <a class="active" href="#" title="Menu 1">
+                                <span><i class="fas fa-building"></i></span>
+                                <span>Menu 1</span>
+                            </a>
+                        </li>
+                        <li class="nav-link-item">
+                            <a href="#" title="Menu 1">
+                                <span><i class="fas fa-building"></i></span>
+                                <span>Menu 1</span>
+                            </a>
+                        </li>
+                        <li class="nav-link-item">
+                            <a href="#" title="Menu 1">
+                                <span><i class="fas fa-building"></i></span>
+                                <span>Menu 1</span>
+                            </a>
+                        </li>
+                        <li class="nav-dropdown-item">
+                            <input type="checkbox" id="nvItmDrpdwn-settings">
+                            <label for="nvItmDrpdwn-settings">
+                                <span><i class="fas fa-cog"></i></span>
+                                <span>Settings</span>
+                            </label>
+                            <ul>
+                                <li><a href="#" class="nav-item">Link One</a></li>
+                                <li><a href="#" class="nav-item">Link Two</a></li>
+                                <li><a href="#" class="nav-item">Link Three</a></li>
+                                <li><a href="#" class="nav-item">Link Four</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-dropdown-item">
+                                <input type="checkbox" id="nvItmDrpdwn-settingsB">
+                                <label for="nvItmDrpdwn-settingsB">
+                                    <span><i class="fas fa-cog"></i></span>
+                                    <span>Settings</span>
+                                </label>
+                                <ul>
+                                    <li><a href="#" class="nav-item">Link One</a></li>
+                                    <li><a href="#" class="nav-item">Link Two</a></li>
+                                    <li><a href="#" class="nav-item">Link Three</a></li>
+                                    <li><a href="#" class="nav-item">Link Four</a></li>
+                                </ul>
+                        </li>
+                </ul>
+                <div class="main-nav-footer">
+                    <label class="btn-toggle-main-nav" for="checkbox-main-nav-toggler" title="Toggle Main Navigation">
+                    </label>
+                </div>
+            </div>
+            <div class="page-content bg-light">
+                <label class="mobile-nav-overlay" for="checkbox-mobile-main-nav-toggler"></label>
+                <div class="mobile-nav-header">
+                    <div class="mobile-nav-buttons-left">
+                        <label class="btn btn-link text-light m-0" for="checkbox-mobile-main-nav-toggler">
+                                <i class="fas fa-bars fa-lg"></i>
+                        </label>
+                    </div>
+                    <div class="mobile-nav-title">
+                        <a href="#">
+                            <img src="http://localhost:8080/img/logo.5cc5421c.png" alt="logo"/>
+                        </a>
+                    </div>
+                    <div class="mobile-nav-buttons-right">
+                        <a href="#" class="btn btn-link text-light">
+                            <i class="fas fa-bell fa-lg"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="page-content-scroll">
+                    Lorem ipsum, dolor sit amet consectetur adipisicing elit. Enim vitae laudantium, quia, quidem fugiat quos eaque porro veniam eligendi dolorem nam! Corporis aperiam iure nemo! Sint blanditiis pariatur obcaecati accusantium tenetur incidunt vel deleniti perferendis architecto consequatur. Non, voluptate. Ipsa veniam fugit nulla ad officia quas sint optio dolores corporis rem saepe reiciendis, vero possimus laborum fugiat nobis laboriosam ducimus iste omnis enim ex vel iusto suscipit. Eligendi voluptas vitae quis? Nisi ipsum explicabo blanditiis unde hic voluptas. Ad consequatur ipsum quam harum cum nesciunt optio illo maiores explicabo ducimus, doloremque rerum quae sit aut! Totam accusantium esse quae exercitationem hic harum iure ducimus consectetur perspiciatis saepe maiores, sequi facere commodi dolorum asperiores odit. Eaque cupiditate harum veritatis accusamus quae, accusantium exercitationem sint maxime incidunt doloremque animi ducimus ipsum rerum inventore tenetur, iusto error. Quisquam eaque ipsa praesentium voluptatem eius, dolorum sit molestias laborum minus laudantium aspernatur asperiores eum facere ut, pariatur hic est possimus a voluptates! Fugiat doloremque deleniti eaque ipsa maxime dolores unde cupiditate voluptas excepturi animi quam corrupti laudantium eum at illum rem quidem, magni alias explicabo corporis assumenda. Sapiente itaque rerum deserunt provident corrupti blanditiis assumenda laudantium aliquam ullam culpa architecto cumque, consequatur porro necessitatibus debitis molestiae? Dolorum, vero ipsum ea quibusdam sit magni asperiores pariatur! Officia rerum itaque quis animi, ipsa tempora corporis ea soluta earum fugit libero sunt quisquam! Temporibus sed nam blanditiis minus, sit pariatur doloribus, quos beatae doloremque ipsum ab in sint culpa similique molestiae perferendis tempore assumenda, porro deleniti adipisci nesciunt! Quos dolor eius totam ut perferendis modi architecto rerum voluptatibus non veniam! Delectus amet corrupti at perspiciatis ad non facilis deleniti recusandae illum, ex enim est in ratione esse quia nam? Excepturi, officiis accusantium. Quia itaque ipsam molestias quod consequatur soluta voluptatum vitae, dicta velit quo alias illum. Impedit alias illo est cupiditate vero veniam error commodi explicabo ratione assumenda ipsam ipsum perspiciatis quae itaque eum nesciunt enim facere, molestiae in nam sapiente, quo blanditiis nihil? Voluptatem, nulla et sit eligendi aliquid atque dolorum ad, libero suscipit delectus quo omnis dicta nesciunt soluta minus consequuntur fugit ea, vero qui odio explicabo amet recusandae repellat autem! Aperiam repudiandae asperiores accusantium esse, laborum dolorum adipisci saepe atque enim optio voluptates at nihil quod consequatur placeat rerum sint amet blanditiis? Officia sed ut non voluptas repudiandae, impedit architecto ea optio modi, soluta ducimus! Incidunt officia nemo blanditiis, molestiae quidem quisquam voluptate. Explicabo, dignissimos id! At unde animi, ex delectus aliquid voluptatum rerum quibusdam, sed ullam assumenda, ipsa tempora! Rerum incidunt quam inventore tempora cupiditate quo temporibus facere pariatur enim, odit facilis magnam quibusdam maiores excepturi quasi sed ut? Aut quis facere, eveniet officia neque ratione repudiandae velit earum, itaque tempora nesciunt libero alias obcaecati natus quo nisi cupiditate consectetur rem. Sed laboriosam ratione voluptatem ad, ullam quasi. Iure beatae, maxime repellat tempore quo eaque adipisci dolor quibusdam fugit, deleniti odio? Fugit quasi laboriosam accusantium. Eius modi dolore explicabo, nisi adipisci a eveniet. Nihil sunt animi laboriosam pariatur distinctio ipsam architecto deserunt ipsum? Labore vel dolor nihil, exercitationem reiciendis quo aperiam enim eveniet qui iure ex doloremque inventore tempora architecto cupiditate alias eaque impedit earum blanditiis minus possimus ut? At sit ad necessitatibus corporis dolores culpa incidunt fuga magni earum vitae ea ipsum amet sed, id minima velit hic nesciunt, rerum neque ab ratione rem facere! Culpa aperiam hic iusto, illum officia laborum maxime beatae sequi debitis odit dolores blanditiis, perspiciatis natus. Iste, molestias? Quibusdam aliquid in possimus eaque ad nemo doloribus, quod fugit, recusandae debitis accusamus quisquam asperiores pariatur? Aliquam explicabo provident distinctio sequi ipsum sunt molestias error dicta magnam nihil quos, ducimus libero magni deserunt ratione quasi est voluptatem numquam inventore iure recusandae corrupti alias saepe vel. Fugit sint dolorum ab nisi harum neque beatae placeat! Cumque voluptatibus provident reiciendis, tenetur omnis illum blanditiis suscipit tempora hic fuga ex commodi quo perferendis eius quos! Neque suscipit dolorem veniam possimus deleniti repudiandae architecto ratione, molestiae quaerat eaque vel nulla ipsam tenetur animi nesciunt delectus ut cumque tempore eligendi cupiditate voluptatem a dolorum laborum quas. Corporis in ea animi vel eligendi recusandae rerum ipsam illo saepe dolor enim, architecto ullam necessitatibus, molestias fugiat voluptatibus et totam ab. Natus deserunt aliquam ab! Necessitatibus dolore, nostrum ut commodi quisquam vitae ratione cum laborum assumenda tempora eos exercitationem quaerat doloremque, eveniet voluptates sed porro adipisci voluptatum laudantium! Molestiae animi cupiditate ut voluptatibus aperiam incidunt fugit exercitationem nulla, magni possimus in laborum sed enim, omnis minus nobis. Ea est voluptate harum consequuntur modi corrupti asperiores et. Sit, at fugiat! Iusto totam sapiente cumque nihil hic commodi eligendi. Vero repudiandae totam quisquam reprehenderit obcaecati dicta velit, quis quod, possimus ut corrupti necessitatibus porro cum a, enim esse soluta accusantium illum! Soluta aliquid cumque necessitatibus tempora eveniet quidem autem nemo voluptatibus deserunt accusamus beatae sunt eum, minus officiis libero qui placeat adipisci earum! Dolorum doloremque consectetur maiores qui corporis itaque sunt libero cupiditate, reprehenderit eum vitae accusamus aut in obcaecati quis quibusdam? Provident alias numquam blanditiis esse magnam vitae, iure minus aut ad praesentium dolorum labore nostrum voluptate corporis in minima odit accusantium culpa neque sunt? Recusandae ipsum libero autem, suscipit deleniti excepturi inventore impedit doloremque itaque pariatur officiis dolorem! Vero facilis aperiam temporibus ratione sequi consequatur, maxime magni culpa placeat voluptatem unde quos in! Accusantium optio recusandae corrupti incidunt minima! Voluptatum sed velit molestiae incidunt exercitationem cumque accusantium laborum fuga dolorem voluptatem. Minus ex omnis praesentium quo cum laudantium, doloribus neque cupiditate voluptas ullam esse nesciunt dolore! Ducimus exercitationem minima facilis? Consequuntur sequi vero dolores! Asperiores corporis repellendus et explicabo laboriosam exercitationem dolorum deserunt dolor officia modi fugit vel, amet tempore ipsam magni. Voluptatibus expedita eveniet sint tenetur aliquam adipisci perspiciatis hic. Exercitationem perferendis reprehenderit beatae error, quis officia necessitatibus quisquam deserunt blanditiis nesciunt atque cumque doloribus maiores hic nulla nemo, sequi, asperiores quasi quam quo odit fuga! Accusantium, velit voluptate rerum et praesentium reprehenderit molestiae eligendi ipsam quos sapiente temporibus placeat molestias dolor odio fuga harum. Reiciendis, dolores earum sapiente quidem optio minima sed laboriosam eum praesentium itaque?
+                    Lorem ipsum, dolor sit amet consectetur adipisicing elit. Enim vitae laudantium, quia, quidem fugiat quos eaque porro veniam eligendi dolorem nam! Corporis aperiam iure nemo! Sint blanditiis pariatur obcaecati accusantium tenetur incidunt vel deleniti perferendis architecto consequatur. Non, voluptate. Ipsa veniam fugit nulla ad officia quas sint optio dolores corporis rem saepe reiciendis, vero possimus laborum fugiat nobis laboriosam ducimus iste omnis enim ex vel iusto suscipit. Eligendi voluptas vitae quis? Nisi ipsum explicabo blanditiis unde hic voluptas. Ad consequatur ipsum quam harum cum nesciunt optio illo maiores explicabo ducimus, doloremque rerum quae sit aut! Totam accusantium esse quae exercitationem hic harum iure ducimus consectetur perspiciatis saepe maiores, sequi facere commodi dolorum asperiores odit. Eaque cupiditate harum veritatis accusamus quae, accusantium exercitationem sint maxime incidunt doloremque animi ducimus ipsum rerum inventore tenetur, iusto error. Quisquam eaque ipsa praesentium voluptatem eius, dolorum sit molestias laborum minus laudantium aspernatur asperiores eum facere ut, pariatur hic est possimus a voluptates! Fugiat doloremque deleniti eaque ipsa maxime dolores unde cupiditate voluptas excepturi animi quam corrupti laudantium eum at illum rem quidem, magni alias explicabo corporis assumenda. Sapiente itaque rerum deserunt provident corrupti blanditiis assumenda laudantium aliquam ullam culpa architecto cumque, consequatur porro necessitatibus debitis molestiae? Dolorum, vero ipsum ea quibusdam sit magni asperiores pariatur! Officia rerum itaque quis animi, ipsa tempora corporis ea soluta earum fugit libero sunt quisquam! Temporibus sed nam blanditiis minus, sit pariatur doloribus, quos beatae doloremque ipsum ab in sint culpa similique molestiae perferendis tempore assumenda, porro deleniti adipisci nesciunt! Quos dolor eius totam ut perferendis modi architecto rerum voluptatibus non veniam! Delectus amet corrupti at perspiciatis ad non facilis deleniti recusandae illum, ex enim est in ratione esse quia nam? Excepturi, officiis accusantium. Quia itaque ipsam molestias quod consequatur soluta voluptatum vitae, dicta velit quo alias illum. Impedit alias illo est cupiditate vero veniam error commodi explicabo ratione assumenda ipsam ipsum perspiciatis quae itaque eum nesciunt enim facere, molestiae in nam sapiente, quo blanditiis nihil? Voluptatem, nulla et sit eligendi aliquid atque dolorum ad, libero suscipit delectus quo omnis dicta nesciunt soluta minus consequuntur fugit ea, vero qui odio explicabo amet recusandae repellat autem! Aperiam repudiandae asperiores accusantium esse, laborum dolorum adipisci saepe atque enim optio voluptates at nihil quod consequatur placeat rerum sint amet blanditiis? Officia sed ut non voluptas repudiandae, impedit architecto ea optio modi, soluta ducimus! Incidunt officia nemo blanditiis, molestiae quidem quisquam voluptate. Explicabo, dignissimos id! At unde animi, ex delectus aliquid voluptatum rerum quibusdam, sed ullam assumenda, ipsa tempora! Rerum incidunt quam inventore tempora cupiditate quo temporibus facere pariatur enim, odit facilis magnam quibusdam maiores excepturi quasi sed ut? Aut quis facere, eveniet officia neque ratione repudiandae velit earum, itaque tempora nesciunt libero alias obcaecati natus quo nisi cupiditate consectetur rem. Sed laboriosam ratione voluptatem ad, ullam quasi. Iure beatae, maxime repellat tempore quo eaque adipisci dolor quibusdam fugit, deleniti odio? Fugit quasi laboriosam accusantium. Eius modi dolore explicabo, nisi adipisci a eveniet. Nihil sunt animi laboriosam pariatur distinctio ipsam architecto deserunt ipsum? Labore vel dolor nihil, exercitationem reiciendis quo aperiam enim eveniet qui iure ex doloremque inventore tempora architecto cupiditate alias eaque impedit earum blanditiis minus possimus ut? At sit ad necessitatibus corporis dolores culpa incidunt fuga magni earum vitae ea ipsum amet sed, id minima velit hic nesciunt, rerum neque ab ratione rem facere! Culpa aperiam hic iusto, illum officia laborum maxime beatae sequi debitis odit dolores blanditiis, perspiciatis natus. Iste, molestias? Quibusdam aliquid in possimus eaque ad nemo doloribus, quod fugit, recusandae debitis accusamus quisquam asperiores pariatur? Aliquam explicabo provident distinctio sequi ipsum sunt molestias error dicta magnam nihil quos, ducimus libero magni deserunt ratione quasi est voluptatem numquam inventore iure recusandae corrupti alias saepe vel. Fugit sint dolorum ab nisi harum neque beatae placeat! Cumque voluptatibus provident reiciendis, tenetur omnis illum blanditiis suscipit tempora hic fuga ex commodi quo perferendis eius quos! Neque suscipit dolorem veniam possimus deleniti repudiandae architecto ratione, molestiae quaerat eaque vel nulla ipsam tenetur animi nesciunt delectus ut cumque tempore eligendi cupiditate voluptatem a dolorum laborum quas. Corporis in ea animi vel eligendi recusandae rerum ipsam illo saepe dolor enim, architecto ullam necessitatibus, molestias fugiat voluptatibus et totam ab. Natus deserunt aliquam ab! Necessitatibus dolore, nostrum ut commodi quisquam vitae ratione cum laborum assumenda tempora eos exercitationem quaerat doloremque, eveniet voluptates sed porro adipisci voluptatum laudantium! Molestiae animi cupiditate ut voluptatibus aperiam incidunt fugit exercitationem nulla, magni possimus in laborum sed enim, omnis minus nobis. Ea est voluptate harum consequuntur modi corrupti asperiores et. Sit, at fugiat! Iusto totam sapiente cumque nihil hic commodi eligendi. Vero repudiandae totam quisquam reprehenderit obcaecati dicta velit, quis quod, possimus ut corrupti necessitatibus porro cum a, enim esse soluta accusantium illum! Soluta aliquid cumque necessitatibus tempora eveniet quidem autem nemo voluptatibus deserunt accusamus beatae sunt eum, minus officiis libero qui placeat adipisci earum! Dolorum doloremque consectetur maiores qui corporis itaque sunt libero cupiditate, reprehenderit eum vitae accusamus aut in obcaecati quis quibusdam? Provident alias numquam blanditiis esse magnam vitae, iure minus aut ad praesentium dolorum labore nostrum voluptate corporis in minima odit accusantium culpa neque sunt? Recusandae ipsum libero autem, suscipit deleniti excepturi inventore impedit doloremque itaque pariatur officiis dolorem! Vero facilis aperiam temporibus ratione sequi consequatur, maxime magni culpa placeat voluptatem unde quos in! Accusantium optio recusandae corrupti incidunt minima! Voluptatum sed velit molestiae incidunt exercitationem cumque accusantium laborum fuga dolorem voluptatem. Minus ex omnis praesentium quo cum laudantium, doloribus neque cupiditate voluptas ullam esse nesciunt dolore! Ducimus exercitationem minima facilis? Consequuntur sequi vero dolores! Asperiores corporis repellendus et explicabo laboriosam exercitationem dolorum deserunt dolor officia modi fugit vel, amet tempore ipsam magni. Voluptatibus expedita eveniet sint tenetur aliquam adipisci perspiciatis hic. Exercitationem perferendis reprehenderit beatae error, quis officia necessitatibus quisquam deserunt blanditiis nesciunt atque cumque doloribus maiores hic nulla nemo, sequi, asperiores quasi quam quo odit fuga! Accusantium, velit voluptate rerum et praesentium reprehenderit molestiae eligendi ipsam quos sapiente temporibus placeat molestias dolor odio fuga harum. Reiciendis, dolores earum sapiente quidem optio minima sed laboriosam eum praesentium itaque?
+                </div>
+            </div>
+        </div>
+        <script>
+            window.addEventListener("resize", listenResize);
+
+            function listenResize() {
+                if(window.innerWidth < 768){
+                    document.getElementById("checkbox-main-nav-toggler").checked = false;
+                }
+                if(window.innerWidth >= 768 && window.innerWidth <= 991){
+                    document.getElementById("checkbox-main-nav-toggler").checked = true;
+                } else {
+                    document.getElementById("checkbox-main-nav-toggler").checked = false;
+                }
+            }
+        </script>
+    </body>
+</html>
