@@ -1,0 +1,48 @@
+$animation-duration: .25s;
+
+.dashboard-layout{
+    .main-nav{ 
+        transition: all $animation-duration ease-in-out;
+        /*ICONS*/
+        .main-nav-shortcut-menu .shortcut-list .shortcut-item .shortcut-link span:nth-child(1),
+        .main-nav-menu .nav-link-item a span:nth-child(1),
+        .nav-dropdown-item label span:nth-child(1){
+            transition: all $animation-duration ease-in-out;
+        }
+
+        /*TEXT*/
+        .main-nav-header .main-nav-title,
+        .main-nav-shortcut-menu .shortcut-list .shortcut-item .shortcut-link span:nth-child(2),
+        .main-nav-menu .nav-link-item a span:nth-child(2),
+        .nav-dropdown-item label span:nth-child(2){
+            max-width: 100vw;
+            max-height: 100vh;
+            overflow: hidden;
+            transition: max-height $animation-duration,
+                        max-width $animation-duration,
+                        font-size $animation-duration,
+                        padding $animation-duration,
+                        opacity $animation-duration;
+        }
+    }
+
+    #checkbox-main-nav-toggler:checked ~ .main-nav{
+        
+        /*TEXT*/
+        .main-nav-header .main-nav-title,
+        .main-nav-shortcut-menu .shortcut-list .shortcut-item .shortcut-link span:nth-child(2),
+        .main-nav-menu .nav-link-item a span:nth-child(2),
+        .nav-dropdown-item label span:nth-child(2){
+            max-height: 0;
+            max-width: 0;
+            font-size: 0;
+            opacity: 0;
+            padding: 0;
+            transition: max-height $animation-duration,
+                        max-width $animation-duration,
+                        opacity $animation-duration,
+                        font-size $animation-duration,
+                        padding $animation-duration;
+        }
+    }
+}
